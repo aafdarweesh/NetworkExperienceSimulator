@@ -73,10 +73,10 @@ public class RunNetExp {
 
 			int numberPacketsArrived = 0;
 
-			while (counter++ < 1000) {// 1000000
+			while (counter++ < 1000000) {// 1000000
 
 				// Dynamic changes
-				dy.UpdateNodesLocations(counter % 1000);
+				dy.UpdateNodesLocations(counter);
 				dy.UpdateNetworkConnections();
 				//dy.UpdateNetworkPaths(counter, server);
 				server.CalculatePossiblePath(counter, store.g.numberOfNodes, 0, 0, store.g.nodesConnections);

@@ -73,7 +73,7 @@ public class RunCar {
 			while (counter++ < 1000000) {
 
 				// Dynamic Allocation for the nodes
-				dy.UpdateNodesLocations(counter % 1000);
+				dy.UpdateNodesLocations(counter);
 				dy.UpdateNetworkConnections();
 
 				if (store.g.delivered.size() == store.generator.totalNumOfPackets)

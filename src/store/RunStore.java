@@ -59,7 +59,9 @@ public class RunStore {
 				dynamic.AssignInitialLocations();
 				dynamic.UpdateNetworkConnections();
 				while (cnt <= 1000000) {
+					dynamic.UpdateNodesLocations(cnt);
 					dynamic.UpdateNetworkConnections();
+					
 					generator.CheckPacketNetworkAcceptance(cnt, server);
 
 					cnt++;
