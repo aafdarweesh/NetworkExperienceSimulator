@@ -47,7 +47,7 @@ public class RunAll {
 			run1.BufferSizeTest("BufferSizeTest/NetworkFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/PacketFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/NodesMovementFile" + Integer.toString(cnt) + ".txt", 50, cnt, serviceList,
-					packetTypeList, 4);
+					packetTypeList, 3);
 			run2.BufferSizeTest("BufferSizeTest/NetworkFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/PacketFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/NodesMovementFile" + Integer.toString(cnt) + ".txt", "BufferSizeTest/CAR.txt");
@@ -104,7 +104,7 @@ public class RunAll {
 			run1.NumberOfNodesTest("NumberOfNodesTest/NetworkFile" + Integer.toString(cnt) + ".txt",
 					"NumberOfNodesTest/PacketFile" + Integer.toString(cnt) + ".txt",
 					"NumberOfNodesTest/NodesMovementFile" + Integer.toString(cnt) + ".txt", cnt, 10, serviceList,
-					packetTypeList, 4);
+					packetTypeList, 3);
 			run2.NumberOfNodesTest("NumberOfNodesTest/NetworkFile" + Integer.toString(cnt) + ".txt",
 					"NumberOfNodesTest/PacketFile" + Integer.toString(cnt) + ".txt",
 					"NumberOfNodesTest/NodesMovementFile" + Integer.toString(cnt) + ".txt",
@@ -164,7 +164,7 @@ public class RunAll {
 			run1.NumberOfPacketsTest("NumberOfPacketsTest/NetworkFile" + Integer.toString(cnt) + ".txt",
 					"NumberOfPacketsTest/PacketFile" + Integer.toString(cnt) + ".txt",
 					"NumberOfPacketsTest/NodesMovementFile" + Integer.toString(cnt) + ".txt", 50, 10, serviceList,
-					packetTypeList, 4);
+					packetTypeList, 3);
 			run2.NumberOfPacketsTest("NumberOfPacketsTest/NetworkFile" + Integer.toString(cnt) + ".txt",
 					"NumberOfPacketsTest/PacketFile" + Integer.toString(cnt) + ".txt",
 					"NumberOfPacketsTest/NodesMovementFile" + Integer.toString(cnt) + ".txt",
@@ -276,7 +276,7 @@ public class RunAll {
 			run1.DifferentPacketsTest("DifferentPacketsTest/NetworkFile" + Integer.toString(cnt) + ".txt",
 					"DifferentPacketsTest/PacketFile" + Integer.toString(cnt) + ".txt",
 					"DifferentPacketsTest/NodesMovementFile" + Integer.toString(cnt) + ".txt", 50, 10, serviceList,
-					packetTypeList, 2);
+					packetTypeList, 3);
 			run2.DifferentPacketsTest("DifferentPacketsTest/NetworkFile" + Integer.toString(cnt) + ".txt",
 					"DifferentPacketsTest/PacketFile" + Integer.toString(cnt) + ".txt",
 					"DifferentPacketsTest/NodesMovementFile" + Integer.toString(cnt) + ".txt",
