@@ -51,23 +51,22 @@ public class RunStore {
 			store.generator = generator;
 			CarServer server = new CarServer(store.g);
 			store.GenerateNodes(server);
-			/*dynamic.AssignInitialLocations();
-			dynamic.UpdateNetworkConnections();*/
-			int cntUpper = 0;
-			while (cntUpper <= 20) {
-				int cnt = 0;
-				dynamic.AssignInitialLocations();
-				dynamic.UpdateNetworkConnections();
-				while (cnt <= 1000000) {
-					dynamic.UpdateNodesLocations(cnt);
-					dynamic.UpdateNetworkConnections();
-					
-					generator.CheckPacketNetworkAcceptance(cnt, server);
+			/*
+			 * dynamic.AssignInitialLocations(); dynamic.UpdateNetworkConnections();
+			 */
 
-					cnt++;
-				}
-				cntUpper++;
+			int cnt = 0;
+			dynamic.AssignInitialLocations();
+			dynamic.UpdateNetworkConnections();
+			while (cnt <= 1000000) {
+				dynamic.UpdateNodesLocations(cnt);
+				dynamic.UpdateNetworkConnections();
+
+				generator.CheckPacketNetworkAcceptance(cnt, server);
+
+				cnt++;
 			}
+
 			/***/
 
 			generator.general = g;

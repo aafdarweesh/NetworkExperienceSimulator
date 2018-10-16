@@ -15,7 +15,7 @@ public class DynamicAllocation implements Serializable {
 
 	public ArrayList<Integer> xInitial = new ArrayList<>();
 	public ArrayList<Integer> yInitial = new ArrayList<>();
-	
+
 	// Constructor, Update the nodes (from General and Generator class)
 	public DynamicAllocation(GeneralInfo general, Generator generator) {
 		this.general = general;
@@ -25,9 +25,9 @@ public class DynamicAllocation implements Serializable {
 	// Generates new connections each iteration,
 	// will rely on the garbage collector to deal with the previous data
 	public void UpdateNetworkConnections() {
-		
-		//System.out.println("UpdateNetworkConnections");
-		
+
+		// System.out.println("UpdateNetworkConnections");
+
 		int n = general.numberOfNodes;
 		general.nodesConnections = new int[n][n];
 
@@ -52,22 +52,26 @@ public class DynamicAllocation implements Serializable {
 		}
 	}
 
-	/*//Updates the network paths (used in the new proposed approach)
-	public void UpdateNetworkPaths(int timeCounter, Server server) {
-		server.CalculatePossiblePath(timeCounter, general.numberOfNodes, 0, 0, general.nodesConnections);
-	}
-*/
+	/*
+	 * //Updates the network paths (used in the new proposed approach) public void
+	 * UpdateNetworkPaths(int timeCounter, Server server) {
+	 * server.CalculatePossiblePath(timeCounter, general.numberOfNodes, 0, 0,
+	 * general.nodesConnections); }
+	 */
 	// Updates the nodes locations according to the movement file
 	public void UpdateNodesLocations(int time) {
 		int n = general.numberOfNodes;// general.allNodes.size();
 
 		for (int i = 0; i < n; ++i) {
-			
-			if(time%1000 == 0) { //So it doesn't diverge
-				xMovement.get(i).set(time % 1000, xMovement.get(i).get(time % 1000)*-1);
-				yMovement.get(i).set(time % 1000, yMovement.get(i).get(time % 1000)*-1);
+
+			if (time % 1000 == 0) { // So it doesn't diverge
+				//Negate all movements to make sure that the boundary condition is always satisfied
+				for (int j = 0; j < 1000; ++j) {
+					xMovement.get(i).set(j, xMovement.get(i).get(j) * -1);
+					yMovement.get(i).set(j, yMovement.get(i).get(j) * -1);
+				}
 			}
-			
+
 			general.allNodes.get(i).x += xMovement.get(i).get(time % 1000);
 			general.allNodes.get(i).y += yMovement.get(i).get(time % 1000);
 		}
@@ -80,6 +84,16 @@ public class DynamicAllocation implements Serializable {
 
 		ArrayList<Integer> xLocations;
 		ArrayList<Integer> yLocations;
+
+		// These two arrays to make sure that during the movements the nodes still under
+		// coverage
+		ArrayList<Integer> allNodesXLocation = new ArrayList<Integer>();
+		ArrayList<Integer> allNodesYLocation = new ArrayList<Integer>();
+
+		for (int i = 0; i < general.numberOfNodes; ++i) {
+			allNodesXLocation.add(xInitial.get(i));
+			allNodesYLocation.add(yInitial.get(i));
+		}
 
 		for (int i = 0; i < general.numberOfNodes; ++i) {
 
@@ -113,6 +127,27 @@ public class DynamicAllocation implements Serializable {
 					yLocations.add(0);
 				}
 
+				// update the location with the current value
+				allNodesXLocation.set(i, allNodesXLocation.get(i) + xLocations.get(j));
+				allNodesYLocation.set(i, allNodesYLocation.get(i) + yLocations.get(j));
+
+				// Update X location if the node is out of the boundary
+				if (allNodesXLocation.get(i) > general.numberOfNodes * 2) {
+					allNodesXLocation.set(i, allNodesXLocation.get(i) - 1);
+					xLocations.set(j, -1);
+				} else if (allNodesXLocation.get(i) < 0) {
+					allNodesXLocation.set(i, allNodesXLocation.get(i) + 1);
+					xLocations.set(j, 1);
+				}
+				// Update Y location if the node is out of the boundary
+				if (allNodesYLocation.get(i) > general.numberOfNodes * 2) {
+					allNodesYLocation.set(i, allNodesYLocation.get(i) - 1);
+					yLocations.set(j, -1);
+				} else if (allNodesYLocation.get(i) < 0) {
+					allNodesYLocation.set(i, allNodesYLocation.get(i) + 1);
+					yLocations.set(j, 1);
+				}
+
 				cnt++;
 			}
 			xMovement.add(xLocations);
@@ -127,34 +162,25 @@ public class DynamicAllocation implements Serializable {
 	public void GenerateInitialLocation() {
 		Random rand = new Random();
 
-		/*general.allNodes.get(0).x = 0;
-		general.allNodes.get(0).y = 0;
-*/
+		/*
+		 * general.allNodes.get(0).x = 0; general.allNodes.get(0).y = 0;
+		 */
 		for (int i = 0; i < general.numberOfNodes; ++i) {
-			int randomNumX = rand.nextInt(general.numberOfNodes*2);
-			int randomNumY = rand.nextInt(general.numberOfNodes*2);
+			int randomNumX = rand.nextInt(general.numberOfNodes * 2);
+			int randomNumY = rand.nextInt(general.numberOfNodes * 2);
 
 			xInitial.add(randomNumX);
 			yInitial.add(randomNumY);
-			/*if (randomNumX <= 1)
-				general.allNodes.get(i).x = general.allNodes.get(i - 1).x - randomNumX;
-			else
-				general.allNodes.get(i).x = general.allNodes.get(i - 1).x + randomNumX;
-
-			if (randomNumY <= 1)
-				general.allNodes.get(i).y = general.allNodes.get(i - 1).y - randomNumY;
-			else
-				general.allNodes.get(i).y = general.allNodes.get(i - 1).y + randomNumY;*/
-
+			
 		}
 
 	}
-	
+
 	public void AssignInitialLocations() {
-		
+
 		System.out.println("Assign locations!!!!");
-		
-		for(int i = 0; i < general.allNodes.size(); ++i) {
+
+		for (int i = 0; i < general.allNodes.size(); ++i) {
 			general.allNodes.get(i).x = xInitial.get(i);
 			general.allNodes.get(i).y = yInitial.get(i);
 		}
