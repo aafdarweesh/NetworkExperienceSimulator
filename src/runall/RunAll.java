@@ -17,10 +17,10 @@ public class RunAll {
 		// TODO Auto-generated method stub
 
 		BufferSizeTest();
-		NumberOfNodesTest();
+		/*NumberOfNodesTest();
 		NumberOfPacketsTest();
 		ArrivalRateTest();
-		DifferentPacketsTest();
+		DifferentPacketsTest();*/
 
 	}
 
