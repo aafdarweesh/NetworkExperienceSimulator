@@ -17,10 +17,10 @@ public class RunAll {
 		// TODO Auto-generated method stub
 
 		BufferSizeTest();
-		NumberOfNodesTest();
+	/*	NumberOfNodesTest();
 		NumberOfPacketsTest();
 		ArrivalRateTest();
-		DifferentPacketsTest();
+		DifferentPacketsTest();*/
 
 	}
 
@@ -34,15 +34,15 @@ public class RunAll {
 		serviceList.add(15);
 		packetTypeList.add(1000);
 
-		int cnt = 1;
+		int cnt = 20;
 		while (cnt <= 20) {
 
 			store.RunStore run1 = new store.RunStore();
 			carApproach.RunCar run2 = new carApproach.RunCar();
 			netexpMinDistant.RunNetExp run3 = new netexpMinDistant.RunNetExp();
-			netexpMinWeight.RunNetExp run4 = new netexpMinWeight.RunNetExp();
+		/*	netexpMinWeight.RunNetExp run4 = new netexpMinWeight.RunNetExp();
 			netexpRandom.RunNetExp run5 = new netexpRandom.RunNetExp();
-			randomApproach.RunRandom run6 = new randomApproach.RunRandom();
+			randomApproach.RunRandom run6 = new randomApproach.RunRandom();*/
 
 			run1.BufferSizeTest("BufferSizeTest/NetworkFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/PacketFile" + Integer.toString(cnt) + ".txt",
@@ -55,7 +55,7 @@ public class RunAll {
 					"BufferSizeTest/PacketFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/NodesMovementFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/NetExpMinDistant.txt");
-			run4.BufferSizeTest("BufferSizeTest/NetworkFile" + Integer.toString(cnt) + ".txt",
+			/*run4.BufferSizeTest("BufferSizeTest/NetworkFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/PacketFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/NodesMovementFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/NetExpMinWeight.txt");
@@ -66,15 +66,15 @@ public class RunAll {
 			run6.BufferSizeTest("BufferSizeTest/NetworkFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/PacketFile" + Integer.toString(cnt) + ".txt",
 					"BufferSizeTest/NodesMovementFile" + Integer.toString(cnt) + ".txt", "BufferSizeTest/Random.txt");
-
+*/
 			cnt++;
 
 			run1.RUN();
 			run2.RUN();
 			run3.RUN();
-			run4.RUN();
+			/*run4.RUN();
 			run5.RUN();
-			run6.RUN();
+			run6.RUN();*/
 		}
 
 	}

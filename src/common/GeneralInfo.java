@@ -29,7 +29,7 @@ public class GeneralInfo implements Serializable {
 		this.timeCounter = 0;
 		this.numberOfDroppedPackets = 0;
 		this.rerequestedPackets = 0;
-		this.limitedTimeForPacket = 20;
+		this.limitedTimeForPacket = 30;
 		this.packetDeliveredMoreThanOneTime = 0;
 
 		this.allNodes = new ArrayList<Node>();

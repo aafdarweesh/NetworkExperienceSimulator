@@ -192,6 +192,8 @@ public class Generator implements Serializable {
 
 		int trial = 0;
 
+		server.CalculatePossiblePath(time, general.numberOfNodes, 0, 0, general.nodesConnections);
+		
 		for (int i = 0; i < totalNumOfPackets; ++i) {
 			if (genaratedPackets.get(i).arrivelTime == time) {
 				//As long as there is no path from source to destination keep trying (limited to 50 times)

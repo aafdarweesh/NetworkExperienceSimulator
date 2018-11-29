@@ -12,7 +12,7 @@ public class CalculateGraph {
 			int[] path) {
 
 		for (int i = 0; i < n; ++i) {
-			if (allRoutes.get(realsource).get(destination).size() >= 20)
+			if (allRoutes.get(realsource).get(destination).size() >= 50)
 				break;
 			if (check[i] == true || conn[source][i] == 0)
 				continue;

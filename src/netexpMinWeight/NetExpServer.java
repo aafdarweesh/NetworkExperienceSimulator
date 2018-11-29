@@ -124,11 +124,22 @@ public class NetExpServer extends entity.Server {
 			return null;
 
 		// Add the new estimation to the prediction table
-		for (int j = 0; j < possiblePath.get(miniPath).size(); ++j) {
+		/*for (int j = 0; j < possiblePath.get(miniPath).size(); ++j) {
 			timeNodesWeight.get((pathWeightCounter + j) % 100)[possiblePath.get(miniPath).get(j)]++;
 			if (j == possiblePath.get(miniPath).size() - 1)// I think it is wrong : possiblePath.get(miniPath).size() -
 															// 1
 				timeNodesWeight.get((pathWeightCounter + j) % 100)[possiblePath.get(miniPath).get(0)] += 10;
+		}*/
+		
+		for (int j = 0; j < possiblePath.get(miniPath).size(); ++j) {
+
+			if (j == possiblePath.get(miniPath).size() - 1) {// you are in destination now
+				for (int k = 15; k > 0; --k)
+					timeNodesWeight.get((pathWeightCounter + j + (15 - k)) % 100)[possiblePath.get(miniPath)
+							.get(possiblePath.get(miniPath).size() - j - 1)] += k;
+			} else
+				timeNodesWeight.get((pathWeightCounter + j) % 100)[possiblePath.get(miniPath)
+						.get(possiblePath.get(miniPath).size() - j - 1)]++;
 		}
 
 		// Check if the path in the right format or not

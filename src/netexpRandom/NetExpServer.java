@@ -116,12 +116,23 @@ public class NetExpServer extends entity.Server {
 		Random rand = new Random();
 		int randomNum = rand.nextInt(possiblePath.size());
 
-		// Add the new estimation to the prediction table
+		/*// Add the new estimation to the prediction table
 		for (int j = 0; j < possiblePath.get(randomNum).size(); ++j) {
 			timeNodesWeight.get((pathWeightCounter + j) % 100)[possiblePath.get(randomNum).get(j)]++;
 			if (j == possiblePath.get(randomNum).size() - 1)// I think it is wrong : possiblePath.get(randomNum).size()
 															// - 1
 				timeNodesWeight.get((pathWeightCounter + j) % 100)[possiblePath.get(randomNum).get(0)] += 10;
+		}*/
+		
+		for (int j = 0; j < possiblePath.get(randomNum).size(); ++j) {
+
+			if (j == possiblePath.get(randomNum).size() - 1) {// you are in destination now
+				for (int k = 15; k > 0; --k)
+					timeNodesWeight.get((pathWeightCounter + j + (15 - k)) % 100)[possiblePath.get(randomNum)
+							.get(possiblePath.get(randomNum).size() - j - 1)] += k;
+			} else
+				timeNodesWeight.get((pathWeightCounter + j) % 100)[possiblePath.get(randomNum)
+						.get(possiblePath.get(randomNum).size() - j - 1)]++;
 		}
 
 		// System.out.println("Path size : " + possiblePath.get(randomNum).size());

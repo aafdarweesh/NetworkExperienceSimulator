@@ -11,6 +11,7 @@ import carApproach.CarServer;
 import common.DynamicAllocation;
 import common.GeneralInfo;
 import common.Generator;
+import netexpMinDistant.NetExpServer;
 
 public class RunStore {
 
@@ -49,7 +50,7 @@ public class RunStore {
 			StoreObject store = new StoreObject();
 			store.g = g2;
 			store.generator = generator;
-			CarServer server = new CarServer(store.g);
+			NetExpServer server = new NetExpServer(store.g);
 			store.GenerateNodes(server);
 			/*
 			 * dynamic.AssignInitialLocations(); dynamic.UpdateNetworkConnections();
